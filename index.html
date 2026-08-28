@@ -536,7 +536,7 @@ see<!DOCTYPE html>
             }
             document.getElementById('m_ket').value = document.getElementById('m_ket').value.replace(/Metode:.*/, 'Metode: '+m);
         }
-                async function kirimKeWA() {
+                function kirimKeWA() {
     const buktiInput = document.getElementById('bukti');
     if (!buktiInput.files.length) {
         document.getElementById('errBukti').classList.remove('hidden');
@@ -544,28 +544,8 @@ see<!DOCTYPE html>
     }
     document.getElementById('errBukti').classList.add('hidden');
 
-    const file = buktiInput.files[0];
-    const tombol = event.target;
-    tombol.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i> MENGUPLOAD...';
-    tombol.disabled = true;
-
-    try {
-        // ✅ UPLOAD KE FREEIMAGE — TANPA API KEY, TANPA LOGIN!
-        const formData = new FormData();
-        formData.append('source', file);
-        formData.append('format', 'json');
-
-        const res = await fetch('https://freeimage.host/api/1/upload?key=62d493228d208f5f098f92f1a89b3c6c', {
-            method: 'POST',
-            body: formData
-        });
-
-        const data = await res.json();
-        const linkFoto = data.image.url;
-        // Hasil: https://iili.io/xxxxxx.jpg
-
-        // ✅ KIRIM KE WA DENGAN LINK FOTO
-        let teks = `═══════════════════════
+    // Susun pesan lengkap ke WhatsApp
+    let teks = `═══════════════════════
 🛒 PESANAN BARU — FAHRI STORE
 ═══════════════════════
 
@@ -579,26 +559,19 @@ ${document.getElementById('m_ket').value}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📸 FOTO BUKTI PEMBAYARAN ✅
-🔗 LINK FOTO: ${linkFoto}
-
-✅ KLIK LINK DI ATAS → FOTO LANGSUNG MUNCUL!
+👉 SILAKAN KIRIM FOTO BUKTI DI BAWAH INI!
+💡 Tekan tombol + / lampiran → pilih foto bukti → KIRIM!
 ═══════════════════════
 Terima Kasih — Mohon Diproses 🙏`;
 
-        window.open(`https://wa.me/${WA_ADMIN}?text=${encodeURIComponent(teks)}`, '_blank');
+    // Buka WhatsApp langsung
+    window.open(`https://wa.me/${WA_ADMIN}?text=${encodeURIComponent(teks)}`, '_blank');
 
-        alert('✅ BERHASIL!\n📸 Foto terupload ke FreeImage\n🔗 Link foto langsung terkirim ke WhatsApp\n👉 Tinggal klik link → lihat foto!');
+    alert('✅ BERHASIL!\n📱 WhatsApp sudah terbuka otomatis\n👉 Silakan KIRIM FOTO BUKTI secara manual di chat WA ya Kak!\n\nOwner akan terima FOTO ASLI langsung!');
 
-    } catch (err) {
-        alert('⚠️ Upload gagal! Silakan kirim foto manual ke chat ya Kak.');
-        console.error(err);
-    }
-
-    tombol.innerHTML = '<i class="fa fa-paper-plane mr-2"></i> KIRIM KE WHATSAPP';
-    tombol.disabled = false;
     tutupModal();
-        }
-        
+                    }
+                
                                                                 
 
     </script>
