@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+see<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -544,7 +544,11 @@
     }
     document.getElementById('errBukti').classList.add('hidden');
 
-    // Susun pesan teks ke WhatsApp
+    const file = buktiInput.files[0];
+    
+    // ✅ UBAH FOTO BUKTI JADI LINK — BISA DILIHAT LANGSUNG!
+    const linkBukti = URL.createObjectURL(file);
+
     let teks = `═══════════════════════
 🛒 PESANAN BARU — FAHRI STORE
 ═══════════════════════
@@ -557,23 +561,20 @@
 📝 KETERANGAN:
 ${document.getElementById('m_ket').value}
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📸 FOTO BUKTI PEMBAYARAN ✅
+🔗 Klik link di bawah untuk lihat foto:
+${linkBukti}
+
+⚠️ Klik link di atas → foto bukti langsung muncul!
 ═══════════════════════
-✅ BUKTI SUDAH DIUPLOAD
-📸 FOTO BUKTI TERBUKA DI TAB BARU 👇
-👉 Silakan kirim foto bukti ke chat ini!
 Terima Kasih — Mohon Diproses 🙏`;
 
-    // Buka WhatsApp dengan pesan
     window.open(`https://wa.me/${WA_ADMIN}?text=${encodeURIComponent(teks)}`, '_blank');
-
-    // ✅ LANGSUNG BUKA FOTO BUKTI DI TAB BARU — tinggal kirim!
-    const file = buktiInput.files[0];
-    const url = URL.createObjectURL(file);
-    window.open(url, '_blank');
-
-    alert('✅ Berhasil!\n📱 WhatsApp sudah dibuka\n📸 Foto bukti juga terbuka di tab baru\n👉 Tinggal kirim foto ke chat WA ya Kak!');
+    alert('✅ Berhasil!\n📱 WhatsApp terbuka\n📸 Foto bukti sudah jadi LINK di pesan\n👉 Owner tinggal klik link → langsung lihat foto!');
     tutupModal();
-        }
+}
+
                                                                 
 
     </script>
