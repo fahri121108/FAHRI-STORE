@@ -536,7 +536,7 @@ see<!DOCTYPE html>
             }
             document.getElementById('m_ket').value = document.getElementById('m_ket').value.replace(/Metode:.*/, 'Metode: '+m);
         }
-                function kirimKeWA() {
+                async function kirimKeWA() {
     const buktiInput = document.getElementById('bukti');
     if (!buktiInput.files.length) {
         document.getElementById('errBukti').classList.remove('hidden');
@@ -545,11 +545,25 @@ see<!DOCTYPE html>
     document.getElementById('errBukti').classList.add('hidden');
 
     const file = buktiInput.files[0];
-    
-    // ✅ UBAH FOTO BUKTI JADI LINK — BISA DILIHAT LANGSUNG!
-    const linkBukti = URL.createObjectURL(file);
+    const tombol = event.target;
+    tombol.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i> MENGUPLOAD...';
+    tombol.disabled = true;
 
-    let teks = `═══════════════════════
+    try {
+        // ✅ OTOMATIS UPLOAD FOTO BUKTI KE CATBOX
+        const formData = new FormData();
+        formData.append('fileToUpload', file);
+
+        const res = await fetch('https://catbox.moe/user/api.php', {
+            method: 'POST',
+            body: formData
+        });
+
+        const linkFoto = await res.text();
+        // Hasil: https://files.catbox.moe/xxxxxx.jpg
+
+        // ✅ KIRIM KE WHATSAPP DENGAN LINK FOTO CATBOX
+        let teks = `═══════════════════════
 🛒 PESANAN BARU — FAHRI STORE
 ═══════════════════════
 
@@ -563,18 +577,28 @@ ${document.getElementById('m_ket').value}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📸 FOTO BUKTI PEMBAYARAN ✅
-🔗 Klik link di bawah untuk lihat foto:
-${linkBukti}
+🔗 LINK FOTO: ${linkFoto}
 
-⚠️ Klik link di atas → foto bukti langsung muncul!
+✅ KLIK LINK DI ATAS → FOTO LANGSUNG MUNCUL!
 ═══════════════════════
 Terima Kasih — Mohon Diproses 🙏`;
 
-    window.open(`https://wa.me/${WA_ADMIN}?text=${encodeURIComponent(teks)}`, '_blank');
-    alert('✅ Berhasil!\n📱 WhatsApp terbuka\n📸 Foto bukti sudah jadi LINK di pesan\n👉 Owner tinggal klik link → langsung lihat foto!');
-    tutupModal();
-}
+        window.open(`https://wa.me/${WA_ADMIN}?text=${encodeURIComponent(teks)}`, '_blank');
 
+        alert('✅ BERHASIL!\n📸 Foto otomatis di-upload ke Catbox\n🔗 Link foto langsung terkirim ke WhatsApp\n👉 Kakak tinggal klik link → langsung lihat foto bukti!');
+
+    } catch (err) {
+        alert('⚠️ Gagal upload! Coba ulangi ya Kak.');
+        console.error(err);
+    }
+
+    // Kembalikan tombol
+    tombol.innerHTML = '<i class="fa fa-paper-plane mr-2"></i> KIRIM KE WHATSAPP';
+    tombol.disabled = false;
+
+    tutupModal();
+                }
+                
                                                                 
 
     </script>
