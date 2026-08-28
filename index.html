@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAHRI STORE — Toko Digital Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#05050f',
+                        card: '#0f1029',
+                        accent: '#f59e0b',
+                        utama: '#8b5cf6',
+                        hijau: '#10b981',
+                        wa: '#25D366',
+                        ig: '#E1306C',
+                        tiktok: '#000000',
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .card-hover { transition: all 0.3s ease; }
+            .card-hover:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(139, 92, 246, 0.2); }
+            .btn-gradient { background: linear-gradient(90deg, #8b5cf6, #ec4899); }
+            .btn-gradient:hover { background: linear-gradient(90deg, #7c3aed, #db2777); }
+            .wa-float { position: fixed; z-index: 50; bottom: 24px; right: 24px; }
+            .input-readonly { background: #1a1c3d; opacity: 0.9; cursor: not-allowed; }
+            .banner-track { display: flex; animation: scrollBanner 20s linear infinite; width: calc(100% * 3); }
+            .banner-track:hover { animation-play-state: paused; }
+            @keyframes scrollBanner {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-33.333%); }
+            }
+            .category-tab { transition: all 0.25s ease; }
+            .category-tab.active { background: linear-gradient(90deg, #8b5cf6, #ec4899); color: white; }
+            input[type="number"]::-webkit-outer-spin-button,
+            input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+            input[type="number"] { -moz-appearance: textfield; }
+            .link-block { transition: all 0.25s ease; }
+            .link-block:hover { transform: translateY(-2px); }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-dark text-white font-poppins min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-40 bg-dark/90 backdrop-blur-md border-b border-utama/20">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between gap-3 flex-wrap mb-4">
+                <div class="flex items-center gap-3">
+                    <img src="profil.jpg" alt="Logo FAHRI STORE" class="w-10 h-10 rounded-xl object-cover border-2 border-utama/50">
+                    <div>
+                        <h1 class="text-xl font-extrabold text-utama">FAHRI STORE</h1>
+                        <p class="text-xs text-gray-400">Toko Digital Terpercaya & Premium</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 📢 SALURAN RESMI -->
+            <div class="mb-4">
+                <h3 class="text-sm font-bold text-gray-300 mb-2 flex items-center gap-2">
+                    <i class="fa fa-broadcast-tower text-utama"></i> 📢 SALURAN RESMI
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <a href="https://whatsapp.com/channel/0029Vb89i0zInlqP8pH6FR2T" target="_blank" 
+                       class="link-block bg-utama/10 border border-utama/30 px-3 py-2.5 rounded-xl flex items-center justify-between hover:bg-utama/20">
+                        <span class="font-semibold text-sm">📢 SALURAN INFO</span>
+                        <i class="fa fa-external-link text-utama text-sm"></i>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029Vb7aAHyISTkKIzMaAt43" target="_blank" 
+                       class="link-block bg-hijau/10 border border-hijau/30 px-3 py-2.5 rounded-xl flex items-center justify-between hover:bg-hijau/20">
+                        <span class="font-semibold text-sm">⭐ SALURAN TESTIMONI</span>
+                        <i class="fa fa-external-link text-hijau text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 📱 SOSIAL MEDIA -->
+            <div>
+                <h3 class="text-sm font-bold text-gray-300 mb-2 flex items-center gap-2">
+                    <i class="fa fa-share-alt text-utama"></i> 📱 SOSIAL MEDIA
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <a href="https://tiktok.com/@fahzstudio" target="_blank" 
+                       class="link-block bg-tiktok/80 border border-gray-600 px-3 py-2.5 rounded-xl flex items-center justify-between hover:bg-black">
+                        <span class="font-semibold text-sm flex items-center gap-2">
+                            <i class="fa fa-tiktok"></i> TIKTOK
+                        </span>
+                        <i class="fa fa-external-link text-sm"></i>
+                    </a>
+                    <a href="https://instagram.com/fahz_keche" target="_blank" 
+                       class="link-block bg-ig/80 border border-ig/30 px-3 py-2.5 rounded-xl flex items-center justify-between hover:bg-ig">
+                        <span class="font-semibold text-sm flex items-center gap-2">
+                            <i class="fa fa-instagram"></i> INSTAGRAM
+                        </span>
+                        <i class="fa fa-external-link text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- BANNER BERJALAN -->
+    <header class="container mx-auto px-4 py-5">
+        <div class="relative rounded-2xl overflow-hidden border border-utama/30 shadow-lg">
+            <div class="overflow-hidden">
+                <div class="banner-track">
+                    <div class="w-full flex-shrink-0 relative">
+                        <img src="banner.jpg" alt="Banner 1" class="w-full h-44 object-cover">
+                        <div class="bg-gradient-to-t from-dark via-dark/70 to-transparent p-5 absolute bottom-0 w-full">
+                            <h2 class="text-2xl font-bold">Selamat Datang di FAHRI STORE 🛒</h2>
+                            <p class="text-gray-300 text-sm">Pilih Produk → Klik ORDER → Otomatis ke WhatsApp Admin ✅</p>
+                        </div>
+                    </div>
+                    <div class="w-full flex-shrink-0 relative">
+                        <img src="banner2.jpg" alt="Banner 2" class="w-full h-44 object-cover">
+                        <div class="bg-gradient-to-t from-dark via-dark/70 to-transparent p-5 absolute bottom-0 w-full">
+                            <h2 class="text-2xl font-bold">💬 Jasa Pembuatan Script & Website</h2>
+                            <p class="text-gray-300 text-sm">Mulai Rp 15.000 + Free Fitur Tambahan! ✨</p>
+                        </div>
+                    </div>
+                    <div class="w-full flex-shrink-0 relative">
+                        <img src="banner3.jpg" alt="Banner 3" class="w-full h-44 object-cover">
+                        <div class="bg-gradient-to-t from-dark via-dark/70 to-transparent p-5 absolute bottom-0 w-full">
+                            <h2 class="text-2xl font-bold">🎮 Followers Roblox Permanen</h2>
+                            <p class="text-gray-300 text-sm">5K=100 | 10K=300 | 30K=900 Bisa Lebih Mendapatkan Followers — Tidak Hilang! ✅</p>
+                        </div>
+                    </div>
+                    <div class="w-full flex-shrink-0 relative">
+                        <img src="banner.jpg" alt="Banner 1" class="w-full h-44 object-cover">
+                        <div class="bg-gradient-to-t from-dark via-dark/70 to-transparent p-5 absolute bottom-0 w-full">
+                            <h2 class="text-2xl font-bold">Selamat Datang di FAHRI STORE 🛒</h2>
+                            <p class="text-gray-300 text-sm">Pilih Produk → Klik ORDER → Otomatis ke WhatsApp Admin ✅</p>
+                        </div>
+                    </div>
+                    <div class="w-full flex-shrink-0 relative">
+                        <img src="banner2.jpg" alt="Banner 2" class="w-full h-44 object-cover">
+                        <div class="bg-gradient-to-t from-dark via-dark/70 to-transparent p-5 absolute bottom-0 w-full">
+                            <h2 class="text-2xl font-bold">💬 Jasa Pembuatan Script & Website</h2>
+                            <p class="text-gray-300 text-sm">Mulai Rp 15.000 + Free Fitur Tambahan! ✨</p>
+                        </div>
+                    </div>
+                    <div class="w-full flex-shrink-0 relative">
+                        <img src="banner3.jpg" alt="Banner 3" class="w-full h-44 object-cover">
+                        <div class="bg-gradient-to-t from-dark via-dark/70 to-transparent p-5 absolute bottom-0 w-full">
+                            <h2 class="text-2xl font-bold">🎮 Followers Roblox Permanen</h2>
+                            <p class="text-gray-300 text-sm">5K=100 | 10K=300 | 30K=900 — Tidak Hilang! ✅</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- KATEGORI / KATALOG -->
+    <section class="container mx-auto px-4 mb-6">
+        <h2 class="text-2xl font-bold mb-4 text-utama">📂 KATALOG PRODUK</h2>
+        <div class="flex flex-wrap gap-2 mb-6">
+            <button onclick="filterKategori('semua')" id="kat-semua" class="category-tab active px-4 py-2 rounded-xl font-semibold text-sm">
+                <i class="fa fa-th-large mr-1.5"></i> Semua
+            </button>
+            <button onclick="filterKategori('jasa')" id="kat-jasa" class="category-tab bg-card px-4 py-2 rounded-xl font-semibold text-sm hover:bg-utama/20">
+                <i class="fa fa-code mr-1.5"></i> Jasa Pembuatan
+            </button>
+            <button onclick="filterKategori('roblox')" id="kat-roblox" class="category-tab bg-card px-4 py-2 rounded-xl font-semibold text-sm hover:bg-utama/20">
+                <i class="fa fa-gamepad mr-1.5"></i> Layanan Roblox
+            </button>
+            <button onclick="filterKategori('lainnya')" id="kat-lainnya" class="category-tab bg-card px-4 py-2 rounded-xl font-semibold text-sm hover:bg-utama/20">
+                <i class="fa fa-shopping-bag mr-1.5"></i> Lainnya
+            </button>
+        </div>
+    </section>
+
+    <!-- PRODUK -->
+    <main class="container mx-auto px-4 pb-28">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="produkGrid">
+
+            <!-- JASA SCRIPT -->
+            <div class="bg-card rounded-2xl p-5 border border-utama/20 card-hover produk-item" data-kategori="jasa">
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="logo_script.jpg" alt="Logo" class="w-12 h-12 rounded-xl object-cover border border-utama/30">
+                    <div><h3 class="text-xl font-bold">JASA PEMBUATAN SCRIPT</h3><p class="text-gray-400 text-sm">Bot WA / Web / Aplikasi</p></div>
+                </div>
+                <div class="text-xs text-hijau mb-3 space-y-1">
+                    <p>✅ Fitur Lengkap + Free Tambahan</p>
+                    <p>✅ Full Source Code & Revisi</p>
+                </div>
+                <p class="text-2xl font-bold text-accent mb-4">Mulai Rp 15.000</p>
+                <div class="mb-4 p-3 bg-dark rounded-xl border border-utama/20">
+                    <label class="flex items-center gap-2 mb-2 cursor-pointer">
+                        <input type="checkbox" id="reqScript" class="w-4 h-4 accent-utama">
+                        <span class="text-sm font-semibold">✨ Request Fitur Tambahan?</span>
+                    </label>
+                    <textarea id="reqScriptTeks" class="hidden w-full bg-card border border-utama/30 rounded-lg p-2.5 text-sm mt-2" rows="2" placeholder="Tulis fitur yang diminta..."></textarea>
+                </div>
+                <button onclick="bukaBayarScript()" class="w-full btn-gradient py-3 rounded-xl font-bold text-white hover:scale-105 transition-transform">
+                    <i class="fa fa-shopping-cart mr-2"></i> ORDER SEKARANG
+                </button>
+            </div>
+
+            <!-- JASA WEB -->
+            <div class="bg-card rounded-2xl p-5 border border-utama/20 card-hover produk-item" data-kategori="jasa">
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="logo_web.jpg" alt="Logo" class="w-12 h-12 rounded-xl object-cover border border-utama/30">
+                    <div><h3 class="text-xl font-bold">JASA PEMBUATAN WEBSITE</h3><p class="text-gray-400 text-sm">Toko / Portofolio / Landing</p></div>
+                </div>
+                <div class="text-xs text-hijau mb-3 space-y-1">
+                    <p>✅ Fitur Lengkap + Free Tambahan</p>
+                    <p>✅ Responsif HP + PC</p>
+                </div>
+                <p class="text-2xl font-bold text-accent mb-4">Mulai Rp 15.000</p>
+                <div class="mb-4 p-3 bg-dark rounded-xl border border-utama/20">
+                    <label class="flex items-center gap-2 mb-2 cursor-pointer">
+                        <input type="checkbox" id="reqWeb" class="w-4 h-4 accent-utama">
+                        <span class="text-sm font-semibold">✨ Request Fitur Tambahan?</span>
+                    </label>
+                    <textarea id="reqWebTeks" class="hidden w-full bg-card border border-utama/30 rounded-lg p-2.5 text-sm mt-2" rows="2" placeholder="Tulis fitur yang diminta..."></textarea>
+                </div>
+                <button onclick="bukaBayarWeb()" class="w-full btn-gradient py-3 rounded-xl font-bold text-white hover:scale-105 transition-transform">
+                    <i class="fa fa-shopping-cart mr-2"></i> ORDER SEKARANG
+                </button>
+            </div>
+
+            <!-- VERIF ROBLOX -->
+            <div class="bg-card rounded-2xl p-5 border border-utama/20 card-hover produk-item" data-kategori="roblox">
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="logo_verif.jpg" alt="Logo" class="w-12 h-12 rounded-xl object-cover border border-utama/30">
+                    <div><h3 class="text-xl font-bold">VERIFIKASI ROBLOX</h3><p class="text-gray-400 text-sm">Bisa Chat & Voice</p></div>
+                </div>
+                <p class="text-lg font-bold text-accent mb-3">Rp 10.000 / akun</p>
+                <input type="text" id="v_qty" value="1" oninput="hitungVerif()" class="w-full bg-dark border border-utama/30 rounded-xl px-4 py-2.5 mb-2 text-lg font-semibold" placeholder="1 atau 5k dst">
+                <p class="text-sm text-gray-400 mb-4">Total: <span id="v_total" class="text-accent font-bold">Rp 10.000</span></p>
+                <button onclick="bukaBayarVerif()" class="w-full btn-gradient py-3 rounded-xl font-bold text-white hover:scale-105 transition-transform">
+                    <i class="fa fa-shopping-cart mr-2"></i> ORDER SEKARANG
+                </button>
+            </div>
+
+            <!-- FOLLOWERS ROBLOX -->
+            <div class="bg-card rounded-2xl p-5 border border-utama/20 card-hover produk-item" data-kategori="roblox">
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="logo_foll.jpg" alt="Logo" class="w-12 h-12 rounded-xl object-cover border border-utama/30">
+                    <div><h3 class="text-xl font-bold">FOLLOWERS ROBLOX</h3><p class="text-hijau text-sm">✅ Permanen — Tidak Hilang!</p></div>
+                </div>
+                <div class="text-xs text-hijau mb-3">
+                    <p>5K→100 | 10K→300 | 15K→400 | 20K→600 | 30K→900</p>
+                </div>
+                <input type="text" id="f_nom" oninput="hitungFoll()" class="w-full bg-dark border border-utama/30 rounded-xl px-4 py-2.5 mb-2 text-lg font-semibold" placeholder="Contoh: 10k / 15000">
+                <p class="text-sm text-gray-400 mb-4">Followers: <span id="f_jum" class="text-accent font-bold">0</span></p>
+                <button onclick="bukaBayarFoll()" class="w-full btn-gradient py-3 rounded-xl font-bold text-white hover:scale-105 transition-transform">
+                    <i class="fa fa-shopping-cart mr-2"></i> ORDER SEKARANG
+                </button>
+            </div>
+
+            <!-- SEWA BOT -->
+            <div class="bg-card rounded-2xl p-5 border border-utama/20 card-hover produk-item" data-kategori="lainnya">
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="logo_bot.jpg" alt="Logo" class="w-12 h-12 rounded-xl object-cover border border-utama/30">
+                    <div><h3 class="text-xl font-bold">SEWA BOT WHATSAPP</h3><p class="text-gray-400 text-sm">Banyak Fitur!</p></div>
+                </div>
+                <div class="flex gap-2 mb-4">
+                    <button id="btn_harian" onclick="pilihTipeSewa('harian')" class="flex-1 py-2 rounded-lg font-bold bg-utama text-white text-sm">Per Hari</button>
+                    <button id="btn_perm" onclick="pilihTipeSewa('permanen')" class="flex-1 py-2 rounded-lg font-bold bg-gray-700 text-gray-300 text-sm">Permanen</button>
+                </div>
+                <div id="box_harian">
+                    <input type="text" id="s_hari" value="7" oninput="hitungSewa()" class="w-full bg-dark border border-utama/30 rounded-xl px-4 py-2.5 mb-2 text-lg font-semibold">
+                    <p class="text-sm text-gray-400 mb-4">Total: <span id="s_total" class="text-accent font-bold">Rp 7.000</span></p>
+                </div>
+                <div id="box_perm" class="hidden mb-4">
+                    <p class="text-lg font-bold text-hijau">Rp 20.000 — Permanen ✅</p>
+                </div>
+                <button onclick="bukaBayarSewa()" class="w-full btn-gradient py-3 rounded-xl font-bold text-white hover:scale-105 transition-transform">
+                    <i class="fa fa-shopping-cart mr-2"></i> ORDER SEKARANG
+                </button>
+            </div>
+
+            <!-- REKBER -->
+            <div class="bg-card rounded-2xl p-5 border border-utama/20 card-hover produk-item" data-kategori="lainnya">
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="logo_rekber.jpg" alt="Logo" class="w-12 h-12 rounded-xl object-cover border border-utama/30">
+                    <div><h3 class="text-xl font-bold">REKBER / MC</h3><p class="text-gray-400 text-sm">Fee 1.5% — Aman!</p></div>
+                </div>
+                <input type="text" id="r_nom" oninput="hitungRekber()" class="w-full bg-dark border border-utama/30 rounded-xl px-4 py-2.5 mb-2 text-lg font-semibold" placeholder="Nominal contoh: 100k">
+                <p class="text-sm text-gray-400">Fee: <span id="r_fee" class="text-accent font-bold">-</span></p>
+                <p class="text-sm text-gray-400 mb-4">Total: <span id="r_total" class="text-accent font-bold">-</span></p>
+                <button onclick="bukaBayarRekber()" class="w-full btn-gradient py-3 rounded-xl font-bold text-white hover:scale-105 transition-transform">
+                    <i class="fa fa-shopping-cart mr-2"></i> ORDER SEKARANG
+                </button>
+            </div>
+
+            <!-- CV SALDO -->
+            <div class="bg-card rounded-2xl p-5 border border-utama/20 card-hover produk-item" data-kategori="lainnya">
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="logo_cv.jpg" alt="Logo" class="w-12 h-12 rounded-xl object-cover border border-utama/30">
+                    <div><h3 class="text-xl font-bold">CV SALDO / CONVERT</h3><p class="text-gray-400 text-sm">Potong 2% — Proses Cepat!</p></div>
+                </div>
+                <input type="text" id="c_nom" oninput="hitungCV()" class="w-full bg-dark border border-utama/30 rounded-xl px-4 py-2.5 mb-2 text-lg font-semibold" placeholder="Nominal contoh: 50k">
+                <p class="text-sm text-gray-400 mb-4">Diterima: <span id="c_total" class="text-accent font-bold">-</span></p>
+                <button onclick="bukaBayarCV()" class="w-full btn-gradient py-3 rounded-xl font-bold text-white hover:scale-105 transition-transform">
+                    <i class="fa fa-shopping-cart mr-2"></i> ORDER SEKARANG
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- FLOATING WA -->
+    <div class="wa-float">
+        <button onclick="toggleWA()" class="btn-gradient w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-2xl hover:scale-110 transition-transform">
+            <i class="fa fa-whatsapp text-white"></i>
+        </button>
+        <div id="waMenu" class="absolute bottom-20 right-0 w-72 bg-card border border-utama/30 rounded-2xl p-4 shadow-2xl hidden">
+            <div class="flex justify-between items-center mb-4">
+                <h4 class="font-bold text-lg text-utama">💬 Pilih Nomor</h4>
+                <button onclick="toggleWA()" class="text-gray-400 hover:text-white text-xl">&times;</button>
+            </div>
+            <div class="space-y-3">
+                <a href="https://wa.me/6283138272645?text=Halo%20Admin%20FAHRI%20STORE" target="_blank" class="flex items-center justify-between bg-hijau/10 p-3 rounded-xl hover:bg-hijau/20">
+                    <div><p class="text-xs text-gray-400">Nomor Order</p><p class="font-bold text-hijau">0831-3827-2645</p></div>
+                    <i class="fa fa-arrow-right text-hijau"></i>
+                </a>
+                <a href="https://wa.me/6283825783159?text=Halo%20Admin%20FAHRI%20STORE" target="_blank" class="flex items-center justify-between bg-red-500/10 p-3 rounded-xl hover:bg-red-500/20">
+                    <div><p class="text-xs text-gray-400">Nomor Off</p><p class="font-bold text-red-400">0838-2578-3159</p></div>
+                    <i class="fa fa-arrow-right text-red-400"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PEMBAYARAN -->
+<div id="modalBayar" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/85 backdrop-blur-md">
+    <div class="bg-card rounded-2xl p-6 w-full max-w-md mx-4 border border-utama/30 max-h-[90vh] overflow-y-auto">
+        <div class="flex justify-between items-center mb-5">
+            <h3 class="text-2xl font-extrabold text-utama">💳 PEMBAYARAN</h3>
+            <button onclick="tutupModal()" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+        </div>
+        <div class="bg-dark rounded-xl p-4 mb-5 space-y-2">
+            <div><p class="text-xs text-gray-400">PRODUK</p><p id="m_produk" class="font-bold text-white">-</p></div>
+            <div><p class="text-xs text-gray-400">DETAIL</p><p id="m_detail" class="font-semibold text-utama">-</p></div>
+            <div class="border-t border-gray-600 pt-2 mt-2"><p class="text-xs text-gray-400">TOTAL</p><p id="m_total" class="text-2xl font-extrabold text-accent">-</p></div>
+        </div>
+        <div class="flex mb-5 border-b border-gray-600">
+            <button onclick="tabBayar('qris')" id="t_qris" class="flex-1 py-3 text-center font-bold text-utama border-b-2 border-utama text-sm">QRIS</button>
+            <button onclick="tabBayar('dana')" id="t_dana" class="flex-1 py-3 text-center font-bold text-gray-400 text-sm">DANA</button>
+        </div>
+        <div id="c_qris" class="text-center">
+            <p class="text-sm text-gray-400 mb-3">Scan QRIS untuk bayar</p>
+            <img src="qris.jpg" alt="QRIS" class="w-52 h-52 object-contain rounded-xl mx-auto mb-3 bg-white p-3">
+            <!-- ✅ TOMBOL DOWNLOAD QRIS -->
+            <a href="qris.jpg" download="QRIS-FAHRI-STORE.jpg" class="inline-flex items-center gap-2 bg-utama/20 hover:bg-utama/30 text-utama font-semibold px-4 py-2 rounded-lg mb-3 transition-colors">
+                <i class="fa fa-download"></i> Download QRIS
+            </a>
+            <p class="font-bold text-utama">a.n FAHRI STORE</p>
+        </div>
+        <div id="c_dana" class="hidden text-center">
+            <p class="text-sm text-gray-400 mb-3">Transfer ke:</p>
+            <p class="text-2xl font-extrabold text-hijau mb-2">089531746761</p>
+            <p class="font-bold text-utama">a.n FAHRI AL ANNURJANI</p>
+        </div>
+        <div class="mt-6 pt-5 border-t border-gray-700">
+            <label class="block mb-2 font-bold text-sm text-red-400">📎 Upload Bukti <span class="text-red-500">*</span></label>
+            <input type="file" id="bukti" accept="image/*" class="w-full bg-dark border border-red-500/50 rounded-xl p-3 text-sm mb-2">
+            <p id="errBukti" class="text-red-400 text-sm mb-3 hidden">⚠️ Upload bukti dulu!</p>
+            <label class="block mb-2 font-bold text-sm">📝 Keterangan:</label>
+            <textarea id="m_ket" class="w-full input-readonly border border-gray-600 rounded-xl p-3 text-sm mb-5" rows="3" readonly></textarea>
+            <button onclick="kirimKeWA()" class="w-full btn-gradient py-3.5 rounded-xl font-extrabold text-white text-lg hover:scale-105 transition-transform">
+                <i class="fa fa-paper-plane mr-2"></i> KIRIM KE WHATSAPP
+            </button>
+        </div>
+    </div>
+</div>
+
+    <script>
+        const WA_ADMIN = '6283138272645';
+        let pesanan = { nama: '', detail: '', total: 0 };
+        let tipeSewa = 'harian';
+        let metodeBayar = 'QRIS';
+
+        // Format Rupiah
+        function rp(a) { return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(a||0); }
+        
+        // Parse input 10k → 10000
+        function parseUang(t) {
+            if(!t) return 0;
+            t = String(t).trim().toLowerCase().replace(/\./g,'');
+            if(t.endsWith('k')) return (parseInt(t.replace(/[^0-9]/g,''))||0)*1000;
+            if(t.includes('rb')) return (parseInt(t.replace(/[^0-9]/g,''))||0)*1000;
+            return parseInt(t)||0;
+        }
+
+        // Toggle WA Menu
+        function toggleWA() { document.getElementById('waMenu').classList.toggle('hidden'); }
+        document.addEventListener('click', e=>{
+            if(!e.target.closest('.wa-float')) document.getElementById('waMenu').classList.add('hidden');
+        });
+
+        // Filter Kategori
+        function filterKategori(k) {
+            document.querySelectorAll('.category-tab').forEach(t=>{ t.classList.remove('active'); t.classList.add('bg-card'); });
+            document.getElementById(`kat-${k}`).classList.add('active'); document.getElementById(`kat-${k}`).classList.remove('bg-card');
+            document.querySelectorAll('.produk-item').forEach(p=>{
+                p.classList.toggle('hidden', !(k==='semua' || p.dataset.kategori===k));
+            });
+        }
+
+        // Request fitur toggle
+        document.addEventListener('DOMContentLoaded', ()=>{
+            document.getElementById('reqScript')?.addEventListener('change', function(){
+                document.getElementById('reqScriptTeks').classList.toggle('hidden', !this.checked);
+            });
+            document.getElementById('reqWeb')?.addEventListener('change', function(){
+                document.getElementById('reqWebTeks').classList.toggle('hidden', !this.checked);
+            });
+        });
+
+        // === HITUNG OTOMATIS ===
+        function hitungVerif() {
+            let v = parseUang(document.getElementById('v_qty').value);
+            document.getElementById('v_total').innerText = rp(10000*v);
+        }
+        function hitungFoll() {
+            let v = parseUang(document.getElementById('f_nom').value);
+            let f=0;
+            if(v>=30000) f=900+Math.floor((v-30000)/5000)*100;
+            else if(v>=25000) f=700+Math.floor((v-25000)/5000)*100;
+            else if(v>=20000) f=600+Math.floor((v-20000)/5000)*100;
+            else if(v>=15000) f=400+Math.floor((v-15000)/5000)*100;
+            else if(v>=10000) f=300+Math.floor((v-10000)/5000)*100;
+            else if(v>=5000) f=100+Math.floor((v-5000)/5000)*100;
+            document.getElementById('f_jum').innerText = f;
+        }
+        function pilihTipeSewa(t) {
+            tipeSewa = t;
+            if(t==='harian'){
+                document.getElementById('btn_harian').classList.add('bg-utama','text-white'); document.getElementById('btn_harian').classList.remove('bg-gray-700','text-gray-300');
+                document.getElementById('btn_perm').classList.remove('bg-utama','text-white'); document.getElementById('btn_perm').classList.add('bg-gray-700','text-gray-300');
+                document.getElementById('box_harian').classList.remove('hidden'); document.getElementById('box_perm').classList.add('hidden');
+                hitungSewa();
+            } else {
+                document.getElementById('btn_perm').classList.add('bg-utama','text-white'); document.getElementById('btn_perm').classList.remove('bg-gray-700','text-gray-300');
+                document.getElementById('btn_harian').classList.remove('bg-utama','text-white'); document.getElementById('btn_harian').classList.add('bg-gray-700','text-gray-300');
+                document.getElementById('box_perm').classList.remove('hidden'); document.getElementById('box_harian').classList.add('hidden');
+                document.getElementById('s_total').innerText = rp(20000);
+            }
+        }
+        function hitungSewa() {
+            let v = parseUang(document.getElementById('s_hari').value);
+            document.getElementById('s_total').innerText = rp(1000*v);
+        }
+        function hitungRekber() {
+            let v = parseUang(document.getElementById('r_nom').value);
+            let fee = Math.max(Math.ceil(v*0.015), 1000);
+            document.getElementById('r_fee').innerText = rp(fee)+' (1.5%)';
+            document.getElementById('r_total').innerText = rp(v+fee);
+        }
+        function hitungCV() {
+            let v = parseUang(document.getElementById('c_nom').value);
+            document.getElementById('c_total').innerText = rp(Math.floor(v*0.98));
+        }
+
+        // === BUKA MODAL PEMBAYARAN ===
+        function bukaBayarScript() {
+            let req = document.getElementById('reqScript')?.checked ? document.getElementById('reqScriptTeks')?.value || 'Tidak diisi' : 'Tanpa request fitur';
+            pesanan = { nama: 'JASA PEMBUATAN SCRIPT', detail: req, total: 15000 };
+            isiModal();
+        }
+        function bukaBayarWeb() {
+            let req = document.getElementById('reqWeb')?.checked ? document.getElementById('reqWebTeks')?.value || 'Tidak diisi' : 'Tanpa request fitur';
+            pesanan = { nama: 'JASA PEMBUATAN WEBSITE', detail: req, total: 15000 };
+            isiModal();
+        }
+        function bukaBayarVerif() {
+            let v = parseUang(document.getElementById('v_qty').value);
+            pesanan = { nama: 'VERIFIKASI ROBLOX', detail: v+' Akun', total: 10000*v };
+            isiModal();
+        }
+        function bukaBayarFoll() {
+            let v = parseUang(document.getElementById('f_nom').value);
+            let f = document.getElementById('f_jum').innerText;
+            pesanan = { nama: 'FOLLOWERS ROBLOX', detail: v+' → '+f+' Followers', total: v };
+            isiModal();
+        }
+        function bukaBayarSewa() {
+            if(tipeSewa==='harian'){
+                let v = parseUang(document.getElementById('s_hari').value);
+                pesanan = { nama: 'SEWA BOT WHATSAPP', detail: v+' Hari', total: 1000*v };
+            } else {
+                pesanan = { nama: 'SEWA BOT WHATSAPP (PERMANEN)', detail: 'Permanen', total: 20000 };
+            }
+            isiModal();
+        }
+        function bukaBayarRekber() {
+            let v = parseUang(document.getElementById('r_nom').value);
+            let fee = Math.max(Math.ceil(v*0.015), 1000);
+            pesanan = { nama: 'REKBER / MC', detail: 'Nominal: '+rp(v)+' + Fee: '+rp(fee), total: v+fee };
+            isiModal();
+        }
+        function bukaBayarCV() {
+            let v = parseUang(document.getElementById('c_nom').value);
+            pesanan = { nama: 'CV SALDO / CONVERT', detail: 'Input: '+rp(v)+' → Terima: '+rp(Math.floor(v*0.98)), total: v };
+            isiModal();
+        }
+
+        function isiModal() {
+            document.getElementById('m_produk').innerText = pesanan.nama;
+            document.getElementById('m_detail').innerText = pesanan.detail;
+            document.getElementById('m_total').innerText = rp(pesanan.total);
+            document.getElementById('m_ket').value = `Produk: ${pesanan.nama}\nDetail: ${pesanan.detail}\nTotal: ${rp(pesanan.total)}\nMetode: ${metodeBayar}`;
+            document.getElementById('modalBayar').classList.remove('hidden');
+            document.getElementById('modalBayar').classList.add('flex');
+        }
+        function tutupModal() {
+            document.getElementById('modalBayar').classList.add('hidden');
+            document.getElementById('modalBayar').classList.remove('flex');
+            document.getElementById('bukti').value = '';
+            document.getElementById('errBukti').classList.add('hidden');
+        }
+        function tabBayar(m) {
+            metodeBayar = m;
+            if(m==='qris'){
+                document.getElementById('c_qris').classList.remove('hidden'); document.getElementById('c_dana').classList.add('hidden');
+                document.getElementById('t_qris').classList.add('text-utama','border-b-2','border-utama'); document.getElementById('t_dana').classList.remove('text-utama','border-b-2','border-utama');
+            } else {
+                document.getElementById('c_dana').classList.remove('hidden'); document.getElementById('c_qris').classList.add('hidden');
+                document.getElementById('t_dana').classList.add('text-utama','border-b-2','border-utama'); document.getElementById('t_qris').classList.remove('text-utama','border-b-2','border-utama');
+            }
+            document.getElementById('m_ket').value = document.getElementById('m_ket').value.replace(/Metode:.*/, 'Metode: '+m);
+        }
+                function kirimKeWA() {
+            const buktiInput = document.getElementById('bukti');
+            if (!buktiInput.files.length) {
+                document.getElementById('errBukti').classList.remove('hidden');
+                return;
+            }
+            document.getElementById('errBukti').classList.add('hidden');
+
+            // ✅ Baca info file bukti
+            const file = buktiInput.files[0];
+            const namaBukti = file.name;
+            const ukuranBukti = (file.size / 1024).toFixed(2) + ' KB';
+
+            let teks = `═══════════════════════
+🛒 PESANAN BARU — FAHRI STORE
+═══════════════════════
+
+📦 PRODUK: ${pesanan.nama}
+📋 DETAIL: ${pesanan.detail}
+💰 TOTAL: ${rp(pesanan.total)}
+💳 METODE: ${metodeBayar}
+
+📝 KETERANGAN:
+${document.getElementById('m_ket').value}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📎 BUKTI PEMBAYARAN ✅
+📄 Nama File: ${namaBukti}
+📦 Ukuran: ${ukuranBukti}
+⚠️ Silakan kirim foto bukti di chat!
+═══════════════════════
+Terima Kasih — Mohon Diproses 🙏`;
+
+            window.open(`https://wa.me/${WA_ADMIN}?text=${encodeURIComponent(teks)}`, '_blank');
+            alert('✅ Berhasil! Silakan kirim FOTO BUKTI di chat WhatsApp ya Kak!');
+            tutupModal();
+        }
+
+    </script>
+</body>
+</html>
