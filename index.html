@@ -537,19 +537,15 @@
             document.getElementById('m_ket').value = document.getElementById('m_ket').value.replace(/Metode:.*/, 'Metode: '+m);
         }
                 function kirimKeWA() {
-            const buktiInput = document.getElementById('bukti');
-            if (!buktiInput.files.length) {
-                document.getElementById('errBukti').classList.remove('hidden');
-                return;
-            }
-            document.getElementById('errBukti').classList.add('hidden');
+    const buktiInput = document.getElementById('bukti');
+    if (!buktiInput.files.length) {
+        document.getElementById('errBukti').classList.remove('hidden');
+        return;
+    }
+    document.getElementById('errBukti').classList.add('hidden');
 
-            // ✅ Baca info file bukti
-            const file = buktiInput.files[0];
-            const namaBukti = file.name;
-            const ukuranBukti = (file.size / 1024).toFixed(2) + ' KB';
-
-            let teks = `═══════════════════════
+    // Susun pesan teks ke WhatsApp
+    let teks = `═══════════════════════
 🛒 PESANAN BARU — FAHRI STORE
 ═══════════════════════
 
@@ -561,18 +557,24 @@
 📝 KETERANGAN:
 ${document.getElementById('m_ket').value}
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📎 BUKTI PEMBAYARAN ✅
-📄 Nama File: ${namaBukti}
-📦 Ukuran: ${ukuranBukti}
-⚠️ Silakan kirim foto bukti di chat!
 ═══════════════════════
+✅ BUKTI SUDAH DIUPLOAD
+📸 FOTO BUKTI TERBUKA DI TAB BARU 👇
+👉 Silakan kirim foto bukti ke chat ini!
 Terima Kasih — Mohon Diproses 🙏`;
 
-            window.open(`https://wa.me/${WA_ADMIN}?text=${encodeURIComponent(teks)}`, '_blank');
-            alert('✅ Berhasil! Silakan kirim FOTO BUKTI di chat WhatsApp ya Kak!');
-            tutupModal();
+    // Buka WhatsApp dengan pesan
+    window.open(`https://wa.me/${WA_ADMIN}?text=${encodeURIComponent(teks)}`, '_blank');
+
+    // ✅ LANGSUNG BUKA FOTO BUKTI DI TAB BARU — tinggal kirim!
+    const file = buktiInput.files[0];
+    const url = URL.createObjectURL(file);
+    window.open(url, '_blank');
+
+    alert('✅ Berhasil!\n📱 WhatsApp sudah dibuka\n📸 Foto bukti juga terbuka di tab baru\n👉 Tinggal kirim foto ke chat WA ya Kak!');
+    tutupModal();
         }
+                                                                
 
     </script>
 </body>
