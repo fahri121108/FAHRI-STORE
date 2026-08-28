@@ -550,19 +550,21 @@ see<!DOCTYPE html>
     tombol.disabled = true;
 
     try {
-        // ✅ OTOMATIS UPLOAD FOTO BUKTI KE CATBOX
+        // ✅ UPLOAD KE FREEIMAGE — TANPA API KEY, TANPA LOGIN!
         const formData = new FormData();
-        formData.append('fileToUpload', file);
+        formData.append('source', file);
+        formData.append('format', 'json');
 
-        const res = await fetch('https://catbox.moe/user/api.php', {
+        const res = await fetch('https://freeimage.host/api/1/upload?key=62d493228d208f5f098f92f1a89b3c6c', {
             method: 'POST',
             body: formData
         });
 
-        const linkFoto = await res.text();
-        // Hasil: https://files.catbox.moe/xxxxxx.jpg
+        const data = await res.json();
+        const linkFoto = data.image.url;
+        // Hasil: https://iili.io/xxxxxx.jpg
 
-        // ✅ KIRIM KE WHATSAPP DENGAN LINK FOTO CATBOX
+        // ✅ KIRIM KE WA DENGAN LINK FOTO
         let teks = `═══════════════════════
 🛒 PESANAN BARU — FAHRI STORE
 ═══════════════════════
@@ -585,20 +587,18 @@ Terima Kasih — Mohon Diproses 🙏`;
 
         window.open(`https://wa.me/${WA_ADMIN}?text=${encodeURIComponent(teks)}`, '_blank');
 
-        alert('✅ BERHASIL!\n📸 Foto otomatis di-upload ke Catbox\n🔗 Link foto langsung terkirim ke WhatsApp\n👉 Kakak tinggal klik link → langsung lihat foto bukti!');
+        alert('✅ BERHASIL!\n📸 Foto terupload ke FreeImage\n🔗 Link foto langsung terkirim ke WhatsApp\n👉 Tinggal klik link → lihat foto!');
 
     } catch (err) {
-        alert('⚠️ Gagal upload! Coba ulangi ya Kak.');
+        alert('⚠️ Upload gagal! Silakan kirim foto manual ke chat ya Kak.');
         console.error(err);
     }
 
-    // Kembalikan tombol
     tombol.innerHTML = '<i class="fa fa-paper-plane mr-2"></i> KIRIM KE WHATSAPP';
     tombol.disabled = false;
-
     tutupModal();
-                }
-                
+        }
+        
                                                                 
 
     </script>
